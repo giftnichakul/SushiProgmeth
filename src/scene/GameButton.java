@@ -4,10 +4,14 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class GameButton extends Button{
 	
@@ -17,8 +21,8 @@ public class GameButton extends Button{
 	public GameButton(int height, int width, String text) {
 		setPrefWidth(width);
 		setPrefHeight(height);
-		
-	
+		Font font = Font.font("Courier New", FontWeight.BOLD, 36);
+		setFont(font);
 		setText(text);
 		setAlignment(Pos.CENTER);
 		effectButton();
@@ -39,6 +43,19 @@ public class GameButton extends Button{
 			@Override
 			public void handle(MouseEvent event) {
 				setCursor(Cursor.HAND);
+				setEffect(new DropShadow(10,Color.BLACK));
+				ColorAdjust colorAdjust = new ColorAdjust();
+				colorAdjust.setBrightness(-0.1);  
+				setEffect(colorAdjust);
+			}
+		});
+		
+		setOnMouseExited(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				setEffect(null);
+				
 			}
 		});
 		
