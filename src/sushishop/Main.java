@@ -11,7 +11,7 @@ import javafx.scene.layout.*;
 
 
 public class Main extends Application {
-	private int width = 800;
+	private int width = 1000;
 	private int height =600;
 	@Override
 	public void start(Stage stage) throws Exception {
