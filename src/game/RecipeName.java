@@ -1,0 +1,5 @@
+package game;
+
+public enum RecipeName {
+	SUSHI_TAMAGO,SUSHI_EBI,SUSHI_SALMON,SUSHI_TUNA,SUSHI_SQUID,SUSHI_OCTOPUS,
+}

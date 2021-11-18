@@ -1,6 +1,9 @@
 package sushishop;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import game.InventoryItem;
 import game.InventoryItemName;
 import game.SushiGame;
@@ -23,10 +26,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 
-public class ShopPane extends Pane {
+public class ShopPane extends GamePane {
 	
-
-	private void createBackground(int width, int height) {
+	
+	protected int width;
+	protected int height;
+	private void createBackground() {
 		ImageView fuji = new ImageView(new Image("file:res/images/background_fuji_blur.jpg"));
 		fuji.setX(0);
 		fuji.setY(0);
@@ -55,18 +60,59 @@ public class ShopPane extends Pane {
 	
 	public ShopPane (int width,int height) {
 		super();
-		createBackground(width, height);
-		SushiGame sushiGame  = SushiGame.get();
+		this.width = width;
+		this.height = height;
+		
+		
+		createBackground();	
 		System.out.println(sushiGame.getInventories().size());
+		drawIngredients();
+		MakeSushiPane mp = new MakeSushiPane();
+		mp.setTranslateX(800);
+		mp.setTranslateY(height*0.85-90);
+		this.addChildren(mp);
+	
+//		ImageView rice  = new ImageView(sushiGame.getInventories().get(InventoryItemName.RICE).getImage());
+//		rice.setX(0+90);
+//		rice.setY(height*0.85-90);
+//		rice.setFitWidth(90);
+//		rice.setFitHeight(90);
+//		this.getChildren().add(rice);
 		
-		ImageView rice  = new ImageView(sushiGame.getInventories().get(InventoryItemName.RICE).getImage());
-		rice.setX(0);
-		rice.setY(height*0.8);
-		rice.setFitWidth(90);
-		rice.setFitHeight(90);
-		this.getChildren().add(rice);
 		
 		
+		
+		
+	}
+
+
+
+	protected void drawIngredients() {
+		
+		
+		List<InventoryItemName> lst = new ArrayList<>();
+		InventoryItemName[] invName = new InventoryItemName[] {
+				InventoryItemName.RICE,
+				InventoryItemName.SALMON,
+				InventoryItemName.TUNA,
+				InventoryItemName.EBI,
+				InventoryItemName.NORI,								
+				InventoryItemName.TAMAGO,
+				InventoryItemName.IKURA,
+				InventoryItemName.SQUID,
+				InventoryItemName.OCTOPUS,
+		};
+		
+		int i =0;
+		int imgSize = 85;
+		for(InventoryItemName x: invName) {
+			MaterialPane item  = new MaterialPane(x);
+			item.setTranslateX(0+(imgSize+10)*(i/2)+5);
+			item.setTranslateY(height*0.85-(imgSize)*(i%2));
+
+			this.addChildren(item);
+			i++;
+		}
 		
 	}
 
