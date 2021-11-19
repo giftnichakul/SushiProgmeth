@@ -25,18 +25,18 @@ public class StartScene extends AnchorPane{
 	private Label gameName1;
 	private Label gameName2;
 	private Label loco;
-	private Font font = Font.font("Courier New", FontWeight.BOLD, 120);
+	private Font font = Font.font("Courier New", FontWeight.BOLD, 150);
 	
 	
 	public StartScene() {
 		setMaxWidth(1000);
 		setMaxHeight(600);
 		setStyle(startBackground);
-		startButton = new GameButton(100,230,"START");
+		startButton = new GameButton(100,230,"START",Color.BLACK);
 		startButton.setBackgroundButton("start_button1.png");
 		//ImageView image = new ImageView(new Image("file:res/images/ChefLoco.png"));
-		gameName1 = new Label("NIGIRI");
-		gameName2 = new Label("SUSHI");
+		gameName1 = new Label("SUSHI");
+		gameName2 = new Label("MAMA");
 		loco = new Label();
 		
 		gameName1.setTextFill(Color.WHITE);
@@ -53,9 +53,9 @@ public class StartScene extends AnchorPane{
 		
 		AnchorPane.setLeftAnchor(gameName1, 160.0);
 		AnchorPane.setTopAnchor(gameName1, 100.0);
-		AnchorPane.setLeftAnchor(gameName2, 220.0);
+		AnchorPane.setLeftAnchor(gameName2, 160.0);
 		AnchorPane.setTopAnchor(gameName2, 240.0);
-		AnchorPane.setLeftAnchor(loco, 560.0);
+		AnchorPane.setLeftAnchor(loco, 540.0);
 		AnchorPane.setTopAnchor(loco, 60.0);
 		
 		AnchorPane.setRightAnchor(startButton, 385.0);

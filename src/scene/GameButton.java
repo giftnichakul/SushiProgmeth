@@ -15,24 +15,25 @@ import javafx.scene.text.FontWeight;
 
 public class GameButton extends Button{
 	
-	private Font cheri = Font.loadFont("file:res/cheri.regular.ttf", 36);
-	
-	
-	public GameButton(int height, int width, String text) {
+		
+	public GameButton(int height, int width, String text, Color color) {
 		setPrefWidth(width);
 		setPrefHeight(height);
 		Font font = Font.font("Courier New", FontWeight.BOLD, 36);
 		setFont(font);
 		setText(text);
+		setTextFill(color);
 		setAlignment(Pos.CENTER);
 		effectButton();
 	}
 	
 	public void setBackgroundButton(String url) {
+		//String imagePath = ClassLoader.getSystemResource("images/"+url).toString();
+		//System.out.println(imagePath);
 		Image image = new Image("file:res/images/"+url);
 		BackgroundImage backgroundImage = new BackgroundImage( image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		Background background = new Background(backgroundImage);
-		this.setBackground(background);
+		setBackground(background);
 		
 	}
 	
@@ -45,7 +46,7 @@ public class GameButton extends Button{
 				setCursor(Cursor.HAND);
 				setEffect(new DropShadow(10,Color.BLACK));
 				ColorAdjust colorAdjust = new ColorAdjust();
-				colorAdjust.setBrightness(-0.1);  
+				colorAdjust.setBrightness(-0.2);  
 				setEffect(colorAdjust);
 			}
 		});
