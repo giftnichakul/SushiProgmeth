@@ -33,7 +33,7 @@ public class StartScene extends AnchorPane{
 		setMaxHeight(600);
 		setStyle(startBackground);
 		startButton = new GameButton(100,230,"START",Color.BLACK);
-		startButton.setBackgroundButton("start_button1.png");
+		startButton.setBackgroundButton("start-button.png");
 		//ImageView image = new ImageView(new Image("file:res/images/ChefLoco.png"));
 		gameName1 = new Label("SUSHI");
 		gameName2 = new Label("MAMA");
@@ -54,7 +54,7 @@ public class StartScene extends AnchorPane{
 		AnchorPane.setLeftAnchor(gameName1, 160.0);
 		AnchorPane.setTopAnchor(gameName1, 100.0);
 		AnchorPane.setLeftAnchor(gameName2, 160.0);
-		AnchorPane.setTopAnchor(gameName2, 240.0);
+		AnchorPane.setTopAnchor(gameName2, 250.0);
 		AnchorPane.setLeftAnchor(loco, 540.0);
 		AnchorPane.setTopAnchor(loco, 60.0);
 		
@@ -69,7 +69,7 @@ public class StartScene extends AnchorPane{
 		startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				//changeToLevelScene();
+				//setToLevelScene();
 			}
 		});
 		
