@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -26,7 +27,6 @@ public class StartScene extends AnchorPane{
 	private Label gameName2;
 	private Label loco;
 	private Font font = Font.font("Courier New", FontWeight.BOLD, 150);
-	
 	
 	public StartScene() {
 		setMaxWidth(1000);
