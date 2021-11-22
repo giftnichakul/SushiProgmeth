@@ -9,11 +9,16 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class GameButton extends Button{
+	
+	//private String sound = ClassLoader.getSystemResource("sounds/clickSound.wav").toString();
+	
+	private AudioClip buttonSound = new AudioClip("file:res/sounds/clickSound.wav");
 	
 		
 	public GameButton(int height, int width, String text, Color color) {
@@ -48,6 +53,7 @@ public class GameButton extends Button{
 				ColorAdjust colorAdjust = new ColorAdjust();
 				colorAdjust.setBrightness(-0.2);  
 				setEffect(colorAdjust);
+				buttonSound.play();
 			}
 		});
 		
