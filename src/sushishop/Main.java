@@ -3,6 +3,8 @@ package sushishop;
 import game.SushiGame;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import scene.LevelScene;
+import scene.StartScene;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -17,7 +19,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
 		SushiGame.get();
-		Pane pane = new ShopPane(width,height);
+		StartScene pane = new StartScene();
 		Scene scene = new Scene(pane,width,height);
 		stage.setScene(scene);
 		/*
