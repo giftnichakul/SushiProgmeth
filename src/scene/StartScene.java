@@ -26,9 +26,9 @@ public class StartScene extends AnchorPane{
 	private Label gameName1;
 	private Label gameName2;
 	private Label loco;
-	private Font font = Font.font("Courier New", FontWeight.BOLD, 150);
-	
+	private Font font = Font.loadFont("file:res/KGHAPPY.ttf",130);
 	public StartScene() {
+		
 		setMaxWidth(1000);
 		setMaxHeight(600);
 		setStyle(startBackground);
@@ -38,6 +38,7 @@ public class StartScene extends AnchorPane{
 		gameName1 = new Label("SUSHI");
 		gameName2 = new Label("MAMA");
 		loco = new Label();
+		
 		
 		gameName1.setTextFill(Color.WHITE);
 		gameName2.setTextFill(Color.WHITE);
@@ -51,11 +52,11 @@ public class StartScene extends AnchorPane{
 		loco.setGraphic(image);
 		loco.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
 		
-		AnchorPane.setLeftAnchor(gameName1, 160.0);
-		AnchorPane.setTopAnchor(gameName1, 100.0);
-		AnchorPane.setLeftAnchor(gameName2, 160.0);
-		AnchorPane.setTopAnchor(gameName2, 250.0);
-		AnchorPane.setLeftAnchor(loco, 540.0);
+		AnchorPane.setLeftAnchor(gameName1, 180.0);
+		AnchorPane.setTopAnchor(gameName1, 60.0);
+		AnchorPane.setLeftAnchor(gameName2, 100.0);
+		AnchorPane.setTopAnchor(gameName2, 210.0);
+		AnchorPane.setLeftAnchor(loco, 600.0);
 		AnchorPane.setTopAnchor(loco, 60.0);
 		
 		AnchorPane.setRightAnchor(startButton, 385.0);

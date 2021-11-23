@@ -20,7 +20,7 @@ public class SceneController extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		sound = new AudioClip("file:res/sounds/backgroundGameMusic.mp3");
 		stage = primaryStage;
-		root = new LevelScene();
+		root = new StartScene();
 		scene = new Scene(root,1000,600);
 		stage.setScene(scene);
 		stage.setResizable(false);

@@ -53,7 +53,6 @@ public class GameButton extends Button{
 				ColorAdjust colorAdjust = new ColorAdjust();
 				colorAdjust.setBrightness(-0.2);  
 				setEffect(colorAdjust);
-				buttonSound.play();
 			}
 		});
 		
@@ -66,7 +65,13 @@ public class GameButton extends Button{
 			}
 		});
 		
-		//sound effect
+		setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				buttonSound.play();
+				
+			}
+		});
 		
 	}
 	
