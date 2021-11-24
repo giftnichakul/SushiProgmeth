@@ -29,7 +29,7 @@ public class EndingScene {
 	private Font font1 = Font.font("Courier New", FontWeight.BOLD, 30);
 	private Font font2 = Font.font("Courier New", FontWeight.BOLD, 24);
 	
-	private int playerScore = 70;
+	private int playerScore = 1000;
 	
 	
 	public EndingScene() {
@@ -95,24 +95,17 @@ public class EndingScene {
 		return endPane;
 	}
 	
-	public ImageView getsmallStar() {
-		ImageView smallStar = new ImageView(new Image("file:res/images/smallStar.png"));
-		smallStar.setFitHeight(90);
-		smallStar.setFitWidth(90);
-		return smallStar;
-	}
-	
-	public ImageView getBigStar() {
-		ImageView bigStar = new ImageView(new Image("file:res/images/bigStar.png"));
-		bigStar.setFitHeight(120);
-		bigStar.setFitWidth(120);
-		return bigStar;
+	public ImageView star(int size) {
+		ImageView Star = new ImageView(new Image("file:res/images/star.png"));
+		Star.setFitHeight(size);
+		Star.setFitWidth(size);
+		return Star;
 	}
 	
 	public void showStar() {
-		star1 = this.getsmallStar();
-		star2 = this.getsmallStar();
-		star3 = this.getBigStar();
+		star1 = star(90);
+		star2 = star(90);
+		star3 = star(120);
 		
 		AnchorPane.setLeftAnchor(star1, 345.0);
 		AnchorPane.setTopAnchor(star1, 195.0);
@@ -120,7 +113,7 @@ public class EndingScene {
 		AnchorPane.setLeftAnchor(star2, 548.0);
 		AnchorPane.setTopAnchor(star2, 195.0);
 		
-		AnchorPane.setLeftAnchor(star3, 433.0);
+		AnchorPane.setLeftAnchor(star3, 430.0);
 		AnchorPane.setTopAnchor(star3, 150.0);
 		
 		//show stars depend on player score
