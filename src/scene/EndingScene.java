@@ -22,14 +22,11 @@ public class EndingScene {
 	private ImageView star2;
 	private ImageView star3;
 	private Label state;
-	private Label money;
-	private Label stars;
-	private GameButton toHome;
-	private GameButton toLevel;
 	private Font font1 = Font.font("Courier New", FontWeight.BOLD, 30);
 	private Font font2 = Font.font("Courier New", FontWeight.BOLD, 24);
 	
 	private int playerScore = 1000;
+	private int numStar;
 	
 	
 	public EndingScene() {
@@ -63,32 +60,51 @@ public class EndingScene {
 		AnchorPane.setLeftAnchor(state, 405.0);
 		AnchorPane.setTopAnchor(state, 95.0);
 		
+		calculateStar(playerScore);
 		showStar();
 		
-		money = new Label("scores");
-		stars = new Label("stars"); 
+		Label score = new Label("scores");
+		Label stars = new Label("stars"); 
 		
-		money.setFont(font2);
+		score.setFont(font2);
 		stars.setFont(font2);
 		
 		
-		AnchorPane.setLeftAnchor(money, 360.0);
-		AnchorPane.setTopAnchor(money, 325.0);
+		AnchorPane.setLeftAnchor(score, 360.0);
+		AnchorPane.setTopAnchor(score, 325.0);
 		
 		AnchorPane.setLeftAnchor(stars, 365.0);
 		AnchorPane.setTopAnchor(stars, 400.0);
 		
-		toHome = new GameButton(70, 70, "", Color.TRANSPARENT);
-		toLevel = new GameButton(70, 70, "", Color.TRANSPARENT);
+		GameButton toHome = new GameButton(70, 70, "", 10, Color.TRANSPARENT);
+		GameButton restart = new GameButton(70, 70, "", 10, Color.TRANSPARENT); 
+		GameButton toLevel = new GameButton(70, 70, "", 10, Color.TRANSPARENT);
 		
-		AnchorPane.setLeftAnchor(toHome, 380.0);
+		toHome.setBackgroundButton("home-button.png");
+		toLevel.setBackgroundButton("levelButton.png");
+		restart.setBackgroundButton("replayButton.png");
+		
+		AnchorPane.setLeftAnchor(toHome, 360.0);
 		AnchorPane.setTopAnchor(toHome, 475.0);
 		
-		AnchorPane.setLeftAnchor(toLevel, 545.0);
+		AnchorPane.setLeftAnchor(restart, 460.0);
+		AnchorPane.setTopAnchor(restart, 475.0);
+		
+		AnchorPane.setLeftAnchor(toLevel, 555.0);
 		AnchorPane.setTopAnchor(toLevel, 475.0);
 		
+		Label money = new Label(""+playerScore);
+		money.setFont(font2);
+		AnchorPane.setLeftAnchor(money, 540.0);
+		AnchorPane.setTopAnchor(money, 325.0);
 		
-		endPane.getChildren().addAll(showScore,star1,star2,star3,state,money,stars,toHome,toLevel);
+		Label numStars = new Label(""+numStar);
+		numStars.setFont(font2);
+		AnchorPane.setLeftAnchor(numStars, 560.0);
+		AnchorPane.setTopAnchor(numStars, 400.0);
+		
+		
+		endPane.getChildren().addAll(showScore,star1,star2,star3,state,score,stars,toHome,restart,toLevel,money,numStars);
 	}
 
 	public AnchorPane getEndPane() {
@@ -116,18 +132,13 @@ public class EndingScene {
 		AnchorPane.setLeftAnchor(star3, 430.0);
 		AnchorPane.setTopAnchor(star3, 150.0);
 		
-		//show stars depend on player score
-		
-		//show 2 stars
-		if(playerScore < 120) {
+		if(numStar < 3) {
 			star3.setVisible(false);
 		}
-		//show 1 stars
-		if(playerScore < 80) {
+		if (numStar < 2) {
 			star2.setVisible(false);
 		}
-		//show no star
-		if(playerScore < 10) {
+		if(numStar < 1) {
 			star1.setVisible(false);
 		}
 	}
@@ -135,6 +146,19 @@ public class EndingScene {
 	public boolean isPass(int score) {
 		if(playerScore > score) return true;
 		return false;
+	}
+	
+	public int calculateStar(int score){
+		if(score > 120) {
+			numStar = 3;
+		}else if (score > 80) {
+			numStar = 2;
+		}else if(score > 60) {
+			numStar = 1;
+		}else {
+			numStar = 0;
+		}
+		return numStar;
 	}
 }
 	
