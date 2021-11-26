@@ -9,59 +9,62 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class StartScene extends AnchorPane{
+public class StartScene extends SceneController{
 	
-	
+	private final AnchorPane StartPane;
 	private GameButton startButton;
-	private final String startBackground = "-fx-background-image: url('file:res/images/background-start.gif');"
-			+ "fx-background-size: cover;"
-			+ "-fx-background-repeat: no-repeat;"
-			+ "-fx-background-position: center;";
 	private Label gameName1;
 	private Label gameName2;
-	private Label loco;
-	private Font font = Font.loadFont("file:res/KGHAPPY.ttf",130);
+	private ImageView image;
+	private Font font = Font.loadFont("file:res/KGHAPPY.ttf",120);
+	
 	public StartScene() {
 		
-		setMaxWidth(1000);
-		setMaxHeight(600);
-		setStyle(startBackground);
-		startButton = new GameButton(100,230,"START",Color.BLACK);
+		StartPane = new AnchorPane();
+		StartPane.setMaxWidth(1000);
+		StartPane.setMaxHeight(600);
+		Image imageBackground = new Image("file:res/images/background-start.gif");
+		BackgroundImage backgroundImage = new BackgroundImage( imageBackground, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+		Background background = new Background(backgroundImage);
+		StartPane.setBackground(background);
+		
+		//StartPane.setStyle(startBackground);
+		startButton = new GameButton(100,230,"START",36,Color.BLACK);
 		startButton.setBackgroundButton("start-button.png");
 		//ImageView image = new ImageView(new Image("file:res/images/ChefLoco.png"));
 		gameName1 = new Label("SUSHI");
 		gameName2 = new Label("MAMA");
-		loco = new Label();
-		
 		
 		gameName1.setTextFill(Color.WHITE);
 		gameName2.setTextFill(Color.WHITE);
 		gameName1.setFont(font);
 		gameName2.setFont(font);
 		
-		ImageView image = new ImageView(new Image("file:res/images/ChefLoco3.png"));
+		image = new ImageView(new Image("file:res/images/ChefLoco3.png"));
 		image.setFitHeight(400);
 		image.setFitWidth(300);
 		
-		loco.setGraphic(image);
-		loco.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
-		
-		AnchorPane.setLeftAnchor(gameName1, 180.0);
+		AnchorPane.setLeftAnchor(gameName1, 200.0);
 		AnchorPane.setTopAnchor(gameName1, 60.0);
-		AnchorPane.setLeftAnchor(gameName2, 100.0);
-		AnchorPane.setTopAnchor(gameName2, 210.0);
-		AnchorPane.setLeftAnchor(loco, 600.0);
-		AnchorPane.setTopAnchor(loco, 60.0);
+		AnchorPane.setLeftAnchor(gameName2, 120.0);
+		AnchorPane.setTopAnchor(gameName2, 225.0);
+		AnchorPane.setLeftAnchor(image, 580.0);
+		AnchorPane.setTopAnchor(image, 60.0);
 		
 		AnchorPane.setRightAnchor(startButton, 385.0);
 		AnchorPane.setTopAnchor(startButton, 450.0);
-		getChildren().addAll(startButton,gameName1,gameName2,loco);
+		StartPane.getChildren().addAll(startButton,gameName1,gameName2,image);
 		changeScene();
 	}
 	
@@ -70,10 +73,14 @@ public class StartScene extends AnchorPane{
 		startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				//setToLevelScene();
+				setToLevelScene();
 			}
 		});
 		
 	}
+	
+	public Pane getStartPane() {
+        return StartPane ;
+    }
 
 }

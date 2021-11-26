@@ -19,12 +19,16 @@ public class GameButton extends Button{
 	//private String sound = ClassLoader.getSystemResource("sounds/clickSound.wav").toString();
 	
 	private AudioClip buttonSound = new AudioClip("file:res/sounds/clickSound.wav");
+	private int height;
+	private int width;
 	
 		
-	public GameButton(int height, int width, String text, Color color) {
+	public GameButton(int height, int width, String text,int size, Color color) {
+		this.height = height;
+		this.width = width;
 		setPrefWidth(width);
 		setPrefHeight(height);
-		Font font = Font.font("Courier New", FontWeight.BOLD, 36);
+		Font font = Font.font("Courier New", FontWeight.BOLD, size);
 		setFont(font);
 		setText(text);
 		setTextFill(color);
@@ -35,7 +39,7 @@ public class GameButton extends Button{
 	public void setBackgroundButton(String url) {
 		//String imagePath = ClassLoader.getSystemResource("images/"+url).toString();
 		//System.out.println(imagePath);
-		Image image = new Image("file:res/images/"+url);
+		Image image = new Image("file:res/images/"+url, width,height, false,false);
 		BackgroundImage backgroundImage = new BackgroundImage( image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		Background background = new Background(backgroundImage);
 		setBackground(background);
