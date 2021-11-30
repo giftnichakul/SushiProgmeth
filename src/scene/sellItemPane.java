@@ -15,9 +15,9 @@ public class sellItemPane extends VBox{
 		setPrefWidth(150);
 		setAlignment(Pos.CENTER);
 		
-		itemImage = new ImageView(new Image("file:res/images/salmon01.png"));
+		itemImage = new ImageView(new Image("file:res/images/tamago03.png"));
 		itemImage.setFitHeight(100);
-		itemImage.setFitWidth(150);
+		itemImage.setFitWidth(100);
 		
 		GameButton priceButton = new GameButton(40, 120, "  "+price,20,Color.BLACK);
 		priceButton.setBackgroundButton("price.png");

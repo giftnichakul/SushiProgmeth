@@ -1,15 +1,18 @@
 package scene;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,24 +22,22 @@ public class DeliveryScene {
 	
 	private AnchorPane deliveryPane;
 	private GameButton backToPlay;
-	private ImageView shopBackground;
-	private Label shop;
-	private Label currentMoney;
+	private Label money;
 	private Font font1 = Font.font("Algerian", FontWeight.BOLD, 120);
 	private Font font2 = Font.font("Courier New", FontWeight.BOLD, 24);
 	
 	public DeliveryScene() {
 		
 		deliveryPane = new AnchorPane();
-		deliveryPane .setMaxWidth(1000);
-		deliveryPane .setMaxHeight(600);
+		deliveryPane.setMaxWidth(1000);
+		deliveryPane.setMaxHeight(600);
 		Image imageBackground = new Image("file:res/images/shopBackground1.jpg");
 		BackgroundImage backgroundImage = new BackgroundImage( imageBackground, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		Background background = new Background(backgroundImage);
 		deliveryPane.setBackground(background);
 		
 		//shop background
-		shopBackground = new ImageView(new Image("file:res/images/orderBackground.png"));
+		ImageView shopBackground = new ImageView(new Image("file:res/images/orderBackground.png"));
 		shopBackground.setFitHeight(400);
 		shopBackground.setFitWidth(900);
 		
@@ -44,7 +45,7 @@ public class DeliveryScene {
 		AnchorPane.setTopAnchor(shopBackground, 90.0);
 		
 		//name shop
-		shop = new Label("SHOP"); 
+		Label shop = new Label("SHOP"); 
 		shop.setFont(font1);
 		shop.setTextFill(Color.WHITE);
 		
@@ -57,16 +58,25 @@ public class DeliveryScene {
 		AnchorPane.setLeftAnchor(items, 132.0);
 		AnchorPane.setTopAnchor(items, 127.0);
 		
+		ImageView moneyBackground = new ImageView(new Image(ClassLoader.getSystemResource("images/level.png").toString()));
+		moneyBackground.setFitHeight(80);
+		moneyBackground.setFitWidth(320);
+		AnchorPane.setLeftAnchor(moneyBackground, 110.0);
+		AnchorPane.setTopAnchor(moneyBackground, 500.0);
+		
 		//current Money
-		currentMoney = new Label("Current Money ");
+		Label currentMoney = new Label("Current Money $");
 		currentMoney.setFont(font2);
 		currentMoney.setTextFill(Color.BLACK);
-		currentMoney.setPrefWidth(300);
-		currentMoney.setMaxHeight(80);
-		
 
-		AnchorPane.setLeftAnchor(currentMoney, 150.0);
-		AnchorPane.setTopAnchor(currentMoney, 510.0);
+
+		AnchorPane.setLeftAnchor(currentMoney, 140.0);
+		AnchorPane.setTopAnchor(currentMoney, 525.0);
+		
+		//money
+		setMoney(400);
+		AnchorPane.setLeftAnchor(money, 360.0);
+		AnchorPane.setTopAnchor(money, 525.0);
 		
 		//Go back to game
 		backToPlay = new GameButton(80 , 300, "Go Back To Game", 24, Color.BLACK);
@@ -74,7 +84,7 @@ public class DeliveryScene {
 		AnchorPane.setLeftAnchor(backToPlay, 630.0);
 		AnchorPane.setTopAnchor(backToPlay, 500.0);
 		
-		deliveryPane.getChildren().addAll(shopBackground,shop,items,backToPlay, currentMoney);
+		deliveryPane.getChildren().addAll(shopBackground,shop,items,backToPlay, moneyBackground, currentMoney, money);
 		
 	}
 	
@@ -95,6 +105,14 @@ public class DeliveryScene {
 		}
 		return items;
 		
+	}
+	
+	public void setMoney(int moneys) {
+		money = new Label("" + moneys);
+		money.setFont(font2);
+		money.setTextFill(Color.BLACK);
+		money.setPrefWidth(300);
+		money.setMaxHeight(80);
 	}
 
 }
