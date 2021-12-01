@@ -1,5 +1,7 @@
 package scene;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,6 +12,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -23,7 +27,7 @@ public class EndingScene extends ScenePane{
 	private Label state;
 	private int playerScore = 1000;
 	private int numStar;
-	
+	private MediaPlayer soundBackground;
 	
 	public EndingScene() {
 	
@@ -37,8 +41,10 @@ public class EndingScene extends ScenePane{
 		Font font2 = this.getFont("Courier New", 24);
 		if(isPass(10)) {
 			state = this.getLabel("-COMPLETE-", font1, Color.WHITE);
+			this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/winningSound.wav").toString()));
 		}else {
 			state = this.getLabel("-FAIL-", font1, Color.WHITE);
+			this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/losindSound.wav").toString()));
 		}
 		state.setPrefHeight(35);
 		state.setPrefWidth(190);
@@ -66,8 +72,32 @@ public class EndingScene extends ScenePane{
 		GameButton toLevel = new GameButton(70, 70, "", 10, Color.TRANSPARENT);
 		
 		toHome.setBackgroundButton("home-button.png");
+		toHome.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Thread(()->{	
+					setSceneOn(SceneController.stage, new StartScene());
+				}).start();	
+			}
+		});
 		toLevel.setBackgroundButton("levelButton.png");
+		toLevel.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Thread(()->{	
+					setSceneOn(SceneController.stage, new LevelScene());
+				}).start();	
+			}
+		});
 		restart.setBackgroundButton("replayButton.png");
+		restart.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Thread(()->{	
+					setSceneOn(SceneController.stage, new GameScene());
+				}).start();	
+			}
+		});
 		
 		AnchorPane.setLeftAnchor(toHome, 360.0);
 		AnchorPane.setTopAnchor(toHome, 475.0);
@@ -135,6 +165,10 @@ public class EndingScene extends ScenePane{
 			numStar = 0;
 		}
 		return numStar;
+	}
+	
+	public MediaPlayer getSoundBackground() {
+		return this.soundBackground;
 	}
 }
 	

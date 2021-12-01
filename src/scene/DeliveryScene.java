@@ -1,9 +1,13 @@
 package scene;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -12,9 +16,10 @@ public class DeliveryScene extends ScenePane{
 	private AnchorPane deliveryPane;
 	private GameButton backToPlay;
 	private Label money;
+	private MediaPlayer soundBackground;
 	
 	public DeliveryScene() {
-		
+		this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/backgroundGame1.mp3").toString()));
 		Font font1 = this.getFont("Algerian", 120);
 		Font font2 = this.getFont("Courier New", 24);
 		
@@ -55,6 +60,15 @@ public class DeliveryScene extends ScenePane{
 		//Go back to game
 		backToPlay = new GameButton(80 , 300, "Go Back To Game", 24, Color.BLACK);
 		backToPlay.setBackgroundButton("backToGameButton.png");
+		/*NEED TO BE THE SAME SCREEN!!!!!!*/
+		backToPlay.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Thread(()->{	
+					setSceneOn(SceneController.stage, new GameScene());
+				}).start();	
+			}
+		});
 		AnchorPane.setLeftAnchor(backToPlay, 630.0);
 		AnchorPane.setTopAnchor(backToPlay, 500.0);
 		
@@ -85,6 +99,10 @@ public class DeliveryScene extends ScenePane{
 		money = this.getLabel(""+moneys, font2, Color.BLACK);
 		money.setPrefWidth(300);
 		money.setMaxHeight(80);
+	}
+	
+	public MediaPlayer getSoundBackground() {
+		return this.soundBackground;
 	}
 
 }

@@ -5,22 +5,23 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.paint.*;
 
 
 public class LevelScene extends ScenePane{
 	
 	private final VBox levelPane;
+	private MediaPlayer soundBackground;
 	private int nameLevel;
 	
 	public LevelScene() {
+		this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/backgroundGameMusic.mp3").toString()));
 		levelPane = new VBox();
 		levelPane.setMaxWidth(1000);
 		levelPane.setMaxHeight(600);
@@ -33,6 +34,14 @@ public class LevelScene extends ScenePane{
 		topPart.setPadding(new Insets(5,10,0,0));
 		GameButton homeButton = new GameButton(60,60,"",36,null);
 		homeButton.setBackgroundButton("home-button.png");
+		homeButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new Thread(()->{	
+					setSceneOn(SceneController.stage, new StartScene());
+				}).start();	
+			}
+		});
 		topPart.getChildren().add(homeButton);
 		
 		//labelPart
@@ -63,7 +72,13 @@ public class LevelScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				nameLevel = level;
-				System.out.println(nameLevel);
+				new Thread(()->{
+					GameScene game = new GameScene();
+					setSceneOn(SceneController.stage, game);
+					SceneController.sound.pause();
+					SceneController.sound = game.getSoundBackground();
+					SceneController.sound.play();
+				}).start();	
 			}
 		});
 		return levelButton;
@@ -72,5 +87,9 @@ public class LevelScene extends ScenePane{
 	public Pane getPane() {
         return levelPane ;
     }
+	
+	public MediaPlayer getSoundBackground() {
+		return this.soundBackground;
+	}
 
 }

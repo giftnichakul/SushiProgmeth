@@ -8,12 +8,16 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class GameScene extends ScenePane{
 	
 	private VBox gameScene;
+	private MediaPlayer soundBackground;
 	
 	public GameScene() {
+		this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/backgroundGame1.mp3").toString()));
 		gameScene = new VBox();
 		gameScene.setPrefHeight(600);
 		gameScene.setPrefWidth(1000);
@@ -38,6 +42,10 @@ public class GameScene extends ScenePane{
 	
 	public VBox getPane() {
 		return gameScene;
+	}
+	
+	public MediaPlayer getSoundBackground() {
+		return this.soundBackground;
 	}
 
 }
