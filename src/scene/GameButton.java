@@ -16,9 +16,7 @@ import javafx.scene.text.FontWeight;
 
 public class GameButton extends Button{
 	
-	//private String sound = ClassLoader.getSystemResource("sounds/clickSound.wav").toString();
-	
-	private AudioClip buttonSound = new AudioClip("file:res/sounds/clickSound.wav");
+	private String sound = ClassLoader.getSystemResource("sounds/clickSound.wav").toString();
 	private int height;
 	private int width;
 	
@@ -37,9 +35,8 @@ public class GameButton extends Button{
 	}
 	
 	public void setBackgroundButton(String url) {
-		//String imagePath = ClassLoader.getSystemResource("images/"+url).toString();
-		//System.out.println(imagePath);
-		Image image = new Image("file:res/images/"+url, width,height, false,false);
+		String imagePath = ClassLoader.getSystemResource("images/"+url).toString();
+		Image image = new Image(imagePath, width,height, false,false);
 		BackgroundImage backgroundImage = new BackgroundImage( image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		Background background = new Background(backgroundImage);
 		setBackground(background);
@@ -48,6 +45,7 @@ public class GameButton extends Button{
 	
 	public void effectButton() {
 		
+		AudioClip buttonSound = new AudioClip(sound);
 		//change cursor
 		setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override

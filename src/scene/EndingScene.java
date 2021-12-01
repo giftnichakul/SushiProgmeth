@@ -14,17 +14,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class EndingScene {
+public class EndingScene extends ScenePane{
 	
 	private AnchorPane endPane;
-	private ImageView showScore;
 	private ImageView star1;
 	private ImageView star2;
 	private ImageView star3;
 	private Label state;
-	private Font font1 = Font.font("Courier New", FontWeight.BOLD, 30);
-	private Font font2 = Font.font("Courier New", FontWeight.BOLD, 24);
-	
 	private int playerScore = 1000;
 	private int numStar;
 	
@@ -34,25 +30,19 @@ public class EndingScene {
 		endPane = new AnchorPane();
 		endPane.setMaxWidth(1000);
 		endPane.setMaxHeight(600);
-		Image imageBackground = new Image("file:res/images/backgroundJapan.gif");
-		BackgroundImage backgroundImage = new BackgroundImage( imageBackground, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-		Background background = new Background(backgroundImage);
-		endPane.setBackground(background);
+		endPane.setBackground(this.getBackground("backgroundJapan.gif"));
+		ImageView showScore = this.getImageView("wining.png", 420, 450); 
 		
-		showScore = new ImageView(new Image("file:res/images/wining.png"));
-		showScore.setFitHeight(450);
-		showScore.setFitWidth(420);
-		
+		Font font1 = this.getFont("Courier New", 30);
+		Font font2 = this.getFont("Courier New", 24);
 		if(isPass(10)) {
-			state = new Label("-COMPLETE-");
+			state = this.getLabel("-COMPLETE-", font1, Color.WHITE);
 		}else {
-			state = new Label("-FAIL-");
+			state = this.getLabel("-FAIL-", font1, Color.WHITE);
 		}
 		state.setPrefHeight(35);
 		state.setPrefWidth(190);
 		state.setAlignment(Pos.CENTER);
-		state.setTextFill(Color.WHITE);
-		state.setFont(font1);
 		
 		AnchorPane.setLeftAnchor(showScore, 290.0);
 		AnchorPane.setTopAnchor(showScore, 70.0);
@@ -62,20 +52,15 @@ public class EndingScene {
 		
 		calculateStar(playerScore);
 		showStar();
-		
-		Label score = new Label("scores");
-		Label stars = new Label("stars"); 
-		
-		score.setFont(font2);
-		stars.setFont(font2);
-		
+		Label score = this.getLabel("scores", font2, Color.BLACK);
+		Label stars = this.getLabel("stars", font2, Color.BLACK);
 		
 		AnchorPane.setLeftAnchor(score, 360.0);
 		AnchorPane.setTopAnchor(score, 325.0);
 		
 		AnchorPane.setLeftAnchor(stars, 365.0);
 		AnchorPane.setTopAnchor(stars, 400.0);
-		
+
 		GameButton toHome = new GameButton(70, 70, "", 10, Color.TRANSPARENT);
 		GameButton restart = new GameButton(70, 70, "", 10, Color.TRANSPARENT); 
 		GameButton toLevel = new GameButton(70, 70, "", 10, Color.TRANSPARENT);
@@ -93,35 +78,26 @@ public class EndingScene {
 		AnchorPane.setLeftAnchor(toLevel, 555.0);
 		AnchorPane.setTopAnchor(toLevel, 475.0);
 		
-		Label money = new Label(""+playerScore);
-		money.setFont(font2);
+		Label money = this.getLabel(""+playerScore, font2, Color.BLACK);
 		AnchorPane.setLeftAnchor(money, 540.0);
 		AnchorPane.setTopAnchor(money, 325.0);
 		
-		Label numStars = new Label(""+numStar);
-		numStars.setFont(font2);
+		Label numStars = this.getLabel(""+numStar, font2, Color.BLACK);
 		AnchorPane.setLeftAnchor(numStars, 560.0);
 		AnchorPane.setTopAnchor(numStars, 400.0);
-		
 		
 		endPane.getChildren().addAll(showScore,star1,star2,star3,state,score,stars,toHome,restart,toLevel,money,numStars);
 	}
 
-	public AnchorPane getEndPane() {
+	public AnchorPane getPane() {
 		return endPane;
 	}
 	
-	public ImageView star(int size) {
-		ImageView Star = new ImageView(new Image("file:res/images/star.png"));
-		Star.setFitHeight(size);
-		Star.setFitWidth(size);
-		return Star;
-	}
 	
 	public void showStar() {
-		star1 = star(90);
-		star2 = star(90);
-		star3 = star(120);
+		star1 = this.getImageView("star.png", 90, 90);
+		star2 = this.getImageView("star.png", 90, 90);
+		star3 = this.getImageView("star.png", 120, 120);
 		
 		AnchorPane.setLeftAnchor(star1, 345.0);
 		AnchorPane.setTopAnchor(star1, 195.0);

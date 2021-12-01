@@ -15,58 +15,40 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.paint.*;
 
 
-public class LevelScene extends SceneController{
+public class LevelScene extends ScenePane{
 	
 	private final VBox levelPane;
-	
-	private final String levelBackground = "-fx-background-image: url('file:res/images/background-level.gif');"
-			+ "fx-background-size: cover;"
-			+ "-fx-background-repeat: no-repeat;"
-			+ "-fx-background-position: center;";
-	private GameButton homeButton;
-	private GameButton level1;
-	private GameButton level2;
-	private GameButton level3;
-	private Font font = Font.font("Algerian", FontWeight.BOLD, 120);
-	private Label level;
 	private int nameLevel;
-	
 	
 	public LevelScene() {
 		levelPane = new VBox();
 		levelPane.setMaxWidth(1000);
 		levelPane.setMaxHeight(600);
+		levelPane.setBackground(this.getBackground("background-level.gif"));
+		Font font = this.getFont("Algerian", 120);
+		
 		//TopPart
 		HBox topPart = new HBox();
 		topPart.setAlignment(Pos.TOP_RIGHT);
-		//topPart.setPrefSize(1000, 40);
 		topPart.setPadding(new Insets(5,10,0,0));
-		homeButton = new GameButton(40,60,"",36,null);
+		GameButton homeButton = new GameButton(60,60,"",36,null);
 		homeButton.setBackgroundButton("home-button.png");
 		topPart.getChildren().add(homeButton);
+		
 		//labelPart
 		HBox middlePart = new HBox();
 		middlePart.setAlignment(Pos.CENTER);
-		//middlePart.setPrefSize(1000, 100);
-		level = new Label("LEVEL"); 
-		level.setFont(font);
-		level.setTextFill(Color.WHITE);
+		Label level = this.getLabel("LEVEL", font, Color.WHITE);
 		middlePart.getChildren().add(level);
+		
 		//ButtomPart
 		HBox buttomPart = new HBox(90);
 		buttomPart.setAlignment(Pos.CENTER);
-		
-		level1 = levelButton(1);
-		level2 = levelButton(2);
-		level3 = levelButton(3);
+		GameButton level1 = levelButton(1);
+		GameButton level2 = levelButton(2);
+		GameButton level3 = levelButton(3);
 		buttomPart.getChildren().addAll(level1, level2, level3);
 		
-		//test
-		TopPane pane = new TopPane();
-		AnchorPane pane1 = pane.getTopPane();
-		
-		
-		levelPane.setStyle(levelBackground);
 		levelPane.getChildren().addAll(topPart, middlePart, buttomPart);
 	}
 	
@@ -81,15 +63,13 @@ public class LevelScene extends SceneController{
 			@Override
 			public void handle(ActionEvent event) {
 				nameLevel = level;
-				
 				System.out.println(nameLevel);
 			}
 		});
-		
 		return levelButton;
 	}
 	
-	public Pane getLevelPane() {
+	public Pane getPane() {
         return levelPane ;
     }
 

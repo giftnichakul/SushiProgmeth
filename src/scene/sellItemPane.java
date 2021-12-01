@@ -10,21 +10,16 @@ public class sellItemPane extends VBox{
 	
 	private ImageView itemImage;
 	
-	public sellItemPane(int price) {
+	public sellItemPane(int price, String name) {
 		setPrefHeight(150);
 		setPrefWidth(150);
 		setAlignment(Pos.CENTER);
-		
-		itemImage = new ImageView(new Image("file:res/images/tamago03.png"));
+		//name to each picture
+		itemImage = new ImageView(new Image(ClassLoader.getSystemResource("images/tamago03.png").toString()));
 		itemImage.setFitHeight(100);
 		itemImage.setFitWidth(100);
-		
 		GameButton priceButton = new GameButton(40, 120, "  "+price,20,Color.BLACK);
 		priceButton.setBackgroundButton("price.png");
-		
 		this.getChildren().addAll(itemImage, priceButton);
-		
 	}
-	
-
 }
