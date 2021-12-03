@@ -15,7 +15,7 @@ public class sellItemPane extends VBox{
 		setPrefWidth(150);
 		setAlignment(Pos.CENTER);
 		//name to each picture
-		itemImage = new ImageView(new Image(ClassLoader.getSystemResource("images/tamago03.png").toString()));
+		itemImage = new ImageView(new Image(ClassLoader.getSystemResource("images/"+name).toString()));
 		itemImage.setFitHeight(100);
 		itemImage.setFitWidth(100);
 		GameButton priceButton = new GameButton(40, 120, "  "+price,20,Color.BLACK);

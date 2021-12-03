@@ -1,5 +1,7 @@
 package scene;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -17,6 +19,7 @@ public class DeliveryScene extends ScenePane{
 	private GameButton backToPlay;
 	private Label money;
 	private MediaPlayer soundBackground;
+	private ArrayList<sellItemPane> itemInventory;
 	
 	public DeliveryScene() {
 		this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/backgroundGame1.mp3").toString()));
@@ -39,6 +42,7 @@ public class DeliveryScene extends ScenePane{
 		AnchorPane.setTopAnchor(shop, 15.0);
 		
 		//item
+		initItems();
 		GridPane items = this.getItemsPane();
 		AnchorPane.setLeftAnchor(items, 132.0);
 		AnchorPane.setTopAnchor(items, 127.0);
@@ -65,7 +69,7 @@ public class DeliveryScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				new Thread(()->{	
-					setSceneOn(SceneController.stage, new GameScene());
+					setSceneOn(SceneController.stage, new GameScene(2));
 				}).start();	
 			}
 		});
@@ -84,11 +88,14 @@ public class DeliveryScene extends ScenePane{
 		GridPane items = new GridPane();
 		items.setPrefHeight(300);
 		items.setPrefWidth(750);
-		for(int i = 0; i < 5;i++) {
-			for(int k = 0; k < 2;k++) {
-				sellItemPane item = new sellItemPane(5,"");
-				items.add(item, i, k);
-			}
+//		for(int i = 0; i < 5;i++) {
+//			for(int k = 0; k < 2;k++) {
+//				sellItemPane item = new sellItemPane(5,"");
+//				items.add(item, i, k);
+//			}
+//		}
+		for(int i = 0; i < itemInventory.size(); i++) {
+			items.add(this.itemInventory.get(i), i%5, i < 5 ? 0 : 1);
 		}
 		return items;
 		
@@ -103,6 +110,19 @@ public class DeliveryScene extends ScenePane{
 	
 	public MediaPlayer getSoundBackground() {
 		return this.soundBackground;
+	}
+	
+	public void initItems() {
+		this.itemInventory = new ArrayList<sellItemPane>();
+		itemInventory.add(new sellItemPane(5, "nori2.png"));
+		itemInventory.add(new sellItemPane(5, "rice1.png"));
+		itemInventory.add(new sellItemPane(6, "tamago.png"));
+		itemInventory.add(new sellItemPane(6, "ebi.png"));
+		itemInventory.add(new sellItemPane(6, "shrimp.png"));
+		itemInventory.add(new sellItemPane(6, "salmon.png"));
+		itemInventory.add(new sellItemPane(6, "tuna.png"));
+		itemInventory.add(new sellItemPane(6, "squid.png"));
+		itemInventory.add(new sellItemPane(6, "salmonGrill.png"));
 	}
 
 }
