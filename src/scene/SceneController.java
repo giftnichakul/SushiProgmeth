@@ -19,7 +19,8 @@ public class SceneController extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-		ScenePane firstScene = new StartScene();
+		//ScenePane firstScene = new StartScene();
+		ScenePane firstScene = new DeliveryScene();
 		//Level Ending Delivery GameScene
 		scene = new Scene(firstScene.getPane() ,1000 ,600);
 		this.sound = firstScene.getSoundBackground();
