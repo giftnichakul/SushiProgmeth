@@ -25,7 +25,7 @@ public class LevelScene extends ScenePane{
 		levelPane = new VBox();
 		levelPane.setMaxWidth(1000);
 		levelPane.setMaxHeight(600);
-		levelPane.setBackground(this.getBackground("background-level.gif"));
+		levelPane.setBackground(this.getBackground("background-level.png"));
 		Font font = this.getFont("Algerian", 120);
 		
 		//TopPart
@@ -66,14 +66,14 @@ public class LevelScene extends ScenePane{
 	}
 	
 	private GameButton levelButton(int level) {
-		GameButton levelButton = new GameButton(360,200,"Level" + level,36,Color.WHITE);
+		GameButton levelButton = new GameButton(360,200,"LeveL " + level,36,Color.WHITE);
 		levelButton.setBackgroundButton("wood-label1.png");
 		levelButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				nameLevel = level;
 				new Thread(()->{
-					GameScene game = new GameScene();
+					GameScene game = new GameScene(nameLevel);
 					setSceneOn(SceneController.stage, game);
 					SceneController.sound.pause();
 					SceneController.sound = game.getSoundBackground();
