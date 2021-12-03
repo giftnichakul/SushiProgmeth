@@ -29,7 +29,7 @@ public class MenuPane extends VBox{
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
 		//rename image name to name!!!!
-		menu = new ImageView(new Image(ClassLoader.getSystemResource("images/tamago03.png").toString()));
+		menu = new ImageView(new Image(ClassLoader.getSystemResource("images/salmonGrillSushi.png"+name).toString()));
 		menu.setFitHeight(80);
 		menu.setFitWidth(145);
 		//change recipes to each menu!!!

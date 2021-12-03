@@ -1,5 +1,8 @@
 package scene;
 
+import java.time.Duration;
+
+import javafx.animation.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -25,7 +28,7 @@ public class TopPane {
 	private ProgressBar time;
 	private Font font = Font.font("Courier New", FontWeight.BOLD, 30);
 	
-	public TopPane() {
+	public TopPane(int level) {
 		topPane = new AnchorPane();
 		topPane.setMaxHeight(50);
 		topPane.setMaxWidth(1000);
@@ -39,7 +42,7 @@ public class TopPane {
 		AnchorPane.setLeftAnchor(background, 240.0);
 		AnchorPane.setTopAnchor(background, 1.0);
 		
-		setLevelLable(2);
+		setLevelLable(level);
 		AnchorPane.setLeftAnchor(presentLevel, 40.0);
 		AnchorPane.setTopAnchor(presentLevel, 8.0);
 		
@@ -63,6 +66,9 @@ public class TopPane {
 		time = new ProgressBar();
 		time.setPrefHeight(30);
 		time.setPrefWidth(500);
+		time.setStyle("-fx-accent: coral;");
+		time.setProgress(0.5);
+
 		AnchorPane.setLeftAnchor(time, 470.0);
 		AnchorPane.setTopAnchor(time, 8.0);
 		
