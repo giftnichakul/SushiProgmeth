@@ -25,7 +25,7 @@ public class LevelScene extends ScenePane{
 		levelPane = new VBox();
 		levelPane.setMaxWidth(1000);
 		levelPane.setMaxHeight(600);
-		levelPane.setBackground(this.getBackground("background-level.gif"));
+		//levelPane.setBackground(this.getBackground("background-level.gif"));
 		Font font = this.getFont("Algerian", 120);
 		
 		//TopPart

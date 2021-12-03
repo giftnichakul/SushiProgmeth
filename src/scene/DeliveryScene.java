@@ -69,7 +69,7 @@ public class DeliveryScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				new Thread(()->{	
-					setSceneOn(SceneController.stage, new GameScene(2));
+					setSceneOn(SceneController.stage, new GameScene());
 				}).start();	
 			}
 		});

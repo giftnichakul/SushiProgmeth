@@ -22,7 +22,7 @@ public class StartScene extends ScenePane{
 		StartPane = new AnchorPane();
 		StartPane.setMaxWidth(1000);
 		StartPane.setMaxHeight(600);
-		StartPane.setBackground(this.getBackground("background-start.gif"));
+		//StartPane.setBackground(this.getBackground("background-start.gif"));
 		
 		GameButton startButton = new GameButton(100,230,"START",36,Color.BLACK);
 		startButton.setBackgroundButton("start-button.png");
@@ -30,6 +30,7 @@ public class StartScene extends ScenePane{
 		startButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				System.out.println("lalalalala");
 				new Thread(()->{	
 					setSceneOn(SceneController.stage, new LevelScene());
 				}).start();	

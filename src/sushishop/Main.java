@@ -20,8 +20,12 @@ public class Main extends Application {
 		// TODO Auto-generated method stub
 		SushiGame.get();
 		StartScene pane = new StartScene();
-		Scene scene = new Scene(pane,width,height);
+		
+//		Scene scene = new Scene(new ShopPane(width,height));
+//		stage.setScene(scene);
+		Scene scene = new Scene(new ShopPane(width,height));
 		stage.setScene(scene);
+		
 		/*
 		stage.setWidth(width);
 		stage.setHeight(height);

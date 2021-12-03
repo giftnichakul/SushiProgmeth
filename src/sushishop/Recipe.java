@@ -18,5 +18,6 @@ public class Recipe {
     public boolean isInputMatch(Set<InventoryItemName> input){
         return (this.input.equals(input));
     }
+    
 
 }
