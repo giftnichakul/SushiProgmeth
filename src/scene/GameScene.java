@@ -22,7 +22,7 @@ public class GameScene extends ScenePane{
 		gameScene.setPrefHeight(600);
 		gameScene.setPrefWidth(1000);
 		
-		TopPane t = new TopPane();
+		TopPane t = new TopPane(2);
 		
 		GridPane g = new GridPane();
 		
