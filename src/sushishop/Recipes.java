@@ -14,23 +14,24 @@ import game.RecipeName;
 public class Recipes {
 	
 	//private private Map<InventoryItemName,InventoryItem> menu = new HashMap<InventoryItemName,InventoryItem>();
-	public static List<Recipe> recipes = new ArrayList<Recipe>();
-    public static void add(RecipeName output,InventoryItemName[] input){
-        Recipes.recipes.add(new Recipe(output,input));
-    }
+	//public static List<Recipe> recipes = new ArrayList<Recipe>();
+    //public static void add(RecipeName output,InventoryItemName[] input){
+    //    Recipes.recipes.add(new Recipe(output,input));
+//   }
 
-    public static Recipe getRecipe(String[] input) throws Exception{
-        Set<String> sInput = new HashSet<String>();
-        for(String s: input){
+    public static RecipeName getRecipe(Set<InventoryItemName> sInput) throws Exception{
+    	/*
+        Set<InventoryItemName> sInput = new HashSet<InventoryItemName>();
+        for(InventoryItemName s: input){
             sInput.add(s);
-        }
-        /*
-        for(Recipe recipe: recipes){
-            if(recipe.isInputMatch(sInput)){
+        }*/
+        
+        for(RecipeName recipe: RecipeName.values()){
+            if(recipe.material.equals(sInput)){
                 return recipe;
             }
         }
-        */
+        
         throw new Exception("Recipe not found");
         
     }

@@ -15,14 +15,18 @@ public class GameScene extends ScenePane{
 	
 	private VBox gameScene;
 	private MediaPlayer soundBackground;
+	private int level;
 	
-	public GameScene() {
+	public GameScene(int level) {
 		this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/backgroundGame1.mp3").toString()));
+		this.level = level;
 		gameScene = new VBox();
 		gameScene.setPrefHeight(600);
 		gameScene.setPrefWidth(1000);
 		
-		TopPane t = new TopPane(2);
+
+		TopPane t = new TopPane(this.level);
+
 		
 		GridPane g = new GridPane();
 		
@@ -37,7 +41,6 @@ public class GameScene extends ScenePane{
 		g.add(new OrderPane(), 4, 0);
 		gameScene.getChildren().addAll(t.getTopPane(),g);
 		
-		
 	}
 	
 	public VBox getPane() {
@@ -47,5 +50,9 @@ public class GameScene extends ScenePane{
 	public MediaPlayer getSoundBackground() {
 		return this.soundBackground;
 	}
+
+	public int getLevel() {
+		return level;
+	}	
 
 }

@@ -55,6 +55,8 @@ public abstract class ScenePane {
 			public void run() {
 				Scene scene = new Scene(scenePane.getPane(), 1000, 600);
 				stage.setScene(scene);
+//				stage.setScene(new Scene(SceneManager.getInstance().getScenePane().getPane(), 1000, 600));
+				
 			}
 		});
 	}

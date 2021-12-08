@@ -1,5 +1,6 @@
 package scene;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.media.AudioClip;
@@ -19,8 +20,14 @@ public class SceneController extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-		ScenePane firstScene = new StartScene();
+
+		//ScenePane firstScene = new StartScene();
 		//ScenePane firstScene = new DeliveryScene();
+
+		//ScenePane firstScene = new StartScene();
+
+		ScenePane firstScene = new EndingScene();
+
 		//Level Ending Delivery GameScene
 		scene = new Scene(firstScene.getPane() ,1000 ,600);
 		this.sound = firstScene.getSoundBackground();
@@ -28,6 +35,7 @@ public class SceneController extends Application{
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
+
 	}
 	
 	

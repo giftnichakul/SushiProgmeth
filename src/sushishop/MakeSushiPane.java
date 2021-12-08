@@ -1,6 +1,7 @@
 package sushishop;
 
 import game.InventoryItemName;
+import game.SushiGame;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -13,31 +14,17 @@ public class MakeSushiPane extends GamePane{
 	protected MakeSushiPane self;
 	private int w = 150;
 	private int h = 40;
+	private boolean isSelected = false;
 	public MakeSushiPane() {
 		self = this;
 		
-		ImageView item  = new ImageView((new Image("file:res/images/start-button.png")));
+		ImageView item  = new ImageView(SushiGame.get().getImage("start-button.png"));
 		item.setFitWidth(w);
 		item.setFitHeight(h);
 		
 		
 		
-		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			//it detects once when the mouse is released.
-			@Override
-			public void handle(MouseEvent event) {
-				
-//				setSelected(!isSelected());
-//				self.println(self.toString(),""+isSelected());
-//				if(isSelected()) {
-//					self.setStyle("-fx-border-color: black;");
-//				}
-//				else {
-//					self.setStyle("-fx-border-color: none;");
-//				}
-			}	
-		});
-		
+
 		this.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			//it detects once when the mouse is released.
 			@Override

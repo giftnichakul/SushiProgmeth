@@ -34,7 +34,7 @@ public class EndingScene extends ScenePane{
 		endPane = new AnchorPane();
 		endPane.setMaxWidth(1000);
 		endPane.setMaxHeight(600);
-		endPane.setBackground(this.getBackground("backgroundJapan.gif"));
+		endPane.setBackground(this.getBackground("backgroundJapan.png"));
 		ImageView showScore = this.getImageView("wining.png", 420, 450); 
 		
 		Font font1 = this.getFont("Courier New", 30);
@@ -44,7 +44,7 @@ public class EndingScene extends ScenePane{
 			this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/winningSound.wav").toString()));
 		}else {
 			state = this.getLabel("-FAIL-", font1, Color.WHITE);
-			this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/losindSound.wav").toString()));
+			this.soundBackground = new MediaPlayer(new Media(ClassLoader.getSystemResource("sounds/losingSound.wav").toString()));
 		}
 		state.setPrefHeight(35);
 		state.setPrefWidth(190);
@@ -76,7 +76,11 @@ public class EndingScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				new Thread(()->{	
-					setSceneOn(SceneController.stage, new StartScene());
+					StartScene game = new StartScene();
+					setSceneOn(SceneController.stage, game);
+					SceneController.sound.pause();
+					SceneController.sound = game.getSoundBackground();
+					SceneController.sound.play();
 				}).start();	
 			}
 		});
@@ -85,7 +89,11 @@ public class EndingScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				new Thread(()->{	
-					setSceneOn(SceneController.stage, new LevelScene());
+					LevelScene game = new LevelScene();
+					setSceneOn(SceneController.stage, game);
+					SceneController.sound.pause();
+					SceneController.sound = game.getSoundBackground();
+					SceneController.sound.play();
 				}).start();	
 			}
 		});
@@ -94,7 +102,7 @@ public class EndingScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				new Thread(()->{	
-					setSceneOn(SceneController.stage, new GameScene());
+					setSceneOn(SceneController.stage, new GameScene(2));
 				}).start();	
 			}
 		});

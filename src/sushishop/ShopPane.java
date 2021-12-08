@@ -2,18 +2,23 @@ package sushishop;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import game.InventoryItem;
 import game.InventoryItemName;
+import game.RecipeName;
 import game.SushiGame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -67,10 +72,41 @@ public class ShopPane extends GamePane {
 		createBackground();	
 		System.out.println(sushiGame.getInventories().size());
 		drawIngredients();
+		//addinitRecipes();
 		MakeSushiPane mp = new MakeSushiPane();
-		mp.setTranslateX(800);
+		SushiOutPane op = new SushiOutPane();
+		mp.setTranslateX(500);
 		mp.setTranslateY(height*0.85-90);
 		this.addChildren(mp);
+		mp.setOnMouseClicked((e)->{
+			Set<InventoryItemName> sel = new HashSet<InventoryItemName>();
+			for(Node node: ShopPane.this.getChildren()) {
+				if(node instanceof MaterialPane) {
+					MaterialPane m = (MaterialPane)node;
+					if(m.isSelected()) {
+						ShopPane.this.println(ShopPane.this.toString(),m.toString());
+						sel.add(m.getMaterialName());
+					}
+				}
+			}
+			try {
+				RecipeName r =Recipes.getRecipe(sel);
+				
+				ShopPane.this.println(ShopPane.this.toString(),r.toString());
+				op.showImage(r);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				op.showImage(null);
+				ShopPane.this.println(ShopPane.this.toString(),"No sush menu ediot!!"+e1.getMessage());
+//				e1.printStackTrace();
+//				e1.Exception("Recipe not found");
+			}
+		});
+		
+		op.setTranslateX(500);
+		op.setTranslateY(height*0.82);
+		this.addChildren(op);
+		
 	
 //		ImageView rice  = new ImageView(sushiGame.getInventories().get(InventoryItemName.RICE).getImage());
 //		rice.setX(0+90);
@@ -115,6 +151,13 @@ public class ShopPane extends GamePane {
 		}
 		
 	}
+	/*
+	protected void addinitRecipes() {
+		Recipes.add(RecipeName.SUSHI_SALMON, new InventoryItemName[] {InventoryItemName.SALMON,InventoryItemName.RICE});
+		Recipes.add(RecipeName.SUSHI_TAMAGO, new InventoryItemName[] {InventoryItemName.TAMAGO,InventoryItemName.RICE});
+		Recipes.add(RecipeName.SUSHI_TUNA, new InventoryItemName[] {InventoryItemName.TUNA,InventoryItemName.RICE});
+		Recipes.add(RecipeName.SUSHI_OCTOPUS, new InventoryItemName[] {InventoryItemName.OCTOPUS,InventoryItemName.RICE});
+	}*/
 
 	
 	

@@ -45,6 +45,10 @@ public class SushiGame {
 			throw new Exception("item "+ name+ " not found!");
 		}
 	}
+	public Image getImage(String name) {
+		Image image = new Image("file:res/images/"+name);
+		return image;
+	}
 	
 	public void init() {
 		//add inventory
