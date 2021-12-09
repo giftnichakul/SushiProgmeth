@@ -49,10 +49,20 @@ public class SushiGame {
 		Image image = new Image("file:res/images/"+name);
 		return image;
 	}
+	public Image getImage(String name,int width,int height) {
+		Image image = new Image("file:res/images/"+name,width,height,false,true);
+		return image;
+	}
 	public Customer getRandomCustomer() {
-		 int id =(int) ((Math.random() * 7) + 1);
+		 int id =(int) ((Math.random() * Customer.values().length));
 		 Customer c = Customer.getCustomerFromId(id);
+		 System.out.println(id);
 		 return c;
+	}
+	public RecipeName getRandomRecipe() {
+		 int id =(int) ((Math.random() * RecipeName.values().length));
+		 RecipeName n = RecipeName.getRecipeFromId(id);
+		 return n;
 	}
 	
 	public void init() {

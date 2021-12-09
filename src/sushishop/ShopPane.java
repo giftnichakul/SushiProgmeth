@@ -36,6 +36,7 @@ public class ShopPane extends GamePane {
 	
 	protected int width;
 	protected int height;
+	protected ArrayList<CustomerPane> seats = new ArrayList<CustomerPane>();
 	private void createBackground() {
 		ImageView fuji = new ImageView(new Image("file:res/images/background_fuji_blur.jpg"));
 		fuji.setX(0);
@@ -72,10 +73,11 @@ public class ShopPane extends GamePane {
 		createBackground();	
 		System.out.println(sushiGame.getInventories().size());
 		drawIngredients();
+		drawCustomers();
 		//addinitRecipes();
 		MakeSushiPane mp = new MakeSushiPane();
 		SushiOutPane op = new SushiOutPane();
-		CustomerPane c = new CustomerPane();
+		//CustomerPane c = new CustomerPane();
 		mp.setTranslateX(500);
 		mp.setTranslateY(height*0.85-90);
 		this.addChildren(mp);
@@ -108,9 +110,9 @@ public class ShopPane extends GamePane {
 		op.setTranslateY(height*0.82);
 		this.addChildren(op);
 		
-		c.setTranslateX(200);
-		c.setTranslateY(height*0.2);
-		this.addChildren(c);
+		//c.setTranslateX(200);
+		//c.setTranslateY(height*0.23-8);
+		//this.addChildren(c);
 		
 	
 //		ImageView rice  = new ImageView(sushiGame.getInventories().get(InventoryItemName.RICE).getImage());
@@ -124,6 +126,15 @@ public class ShopPane extends GamePane {
 		
 		
 		
+	}
+	
+	protected void drawCustomers() {
+		for(int i= 0;i< 5;i++) {
+			CustomerPane cus = new CustomerPane();
+			cus.setTranslateY(height*0.23-8);
+			cus.setTranslateX(i*200+20);
+			this.addChildren(cus);
+		}
 	}
 
 

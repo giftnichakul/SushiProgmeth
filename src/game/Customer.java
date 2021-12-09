@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public enum Customer {
+	AFRICAN(0,"happyFace8.png","unhappyFace8.png","angryFace8.png","happyFace8.png",5),
 	GIRLA(1,"happyFace1.png","unhappyFace1.png","angryFace1.png","happyFace1.png",5),
 	BOYA(2,"happyFace2.png","unhappyFace2.png","angryFace2.png","happyFace2.png",4),
 	BLONDGIRL(3,"happyFace3.png","unhappyFace3.png","angryFace3.png","happyFace3.png",5),
@@ -14,7 +15,7 @@ public enum Customer {
 	ASIAN(5,"happyFace5.png","unhappyFace5.png","angryFace5.png","happyFace5.png",4),
 	SPANISH(6,"happyFace6.png","unhappyFace6.png","angryFace6.png","happyFace6.png",3),
 	GREECE(7,"happyFace7.png","unhappyFace7.png","angryFace7.png","happyFace7.png",5),
-	AFRICAN(8,"happyFace8.png","unhappyFace8.png","angryFace8.png","happyFace8.png",5),
+	
 	;
 	public int id;
 	public String smileFile;
