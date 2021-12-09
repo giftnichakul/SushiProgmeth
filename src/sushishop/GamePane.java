@@ -17,4 +17,5 @@ public class GamePane extends Pane {
 	public void addChildren(Node p) {
 		this.getChildren().add(p);
 	}
+	
 }

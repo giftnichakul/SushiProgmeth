@@ -49,6 +49,11 @@ public class SushiGame {
 		Image image = new Image("file:res/images/"+name);
 		return image;
 	}
+	public Customer getRandomCustomer() {
+		 int id =(int) ((Math.random() * 7) + 1);
+		 Customer c = Customer.getCustomerFromId(id);
+		 return c;
+	}
 	
 	public void init() {
 		//add inventory

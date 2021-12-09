@@ -75,6 +75,7 @@ public class ShopPane extends GamePane {
 		//addinitRecipes();
 		MakeSushiPane mp = new MakeSushiPane();
 		SushiOutPane op = new SushiOutPane();
+		CustomerPane c = new CustomerPane();
 		mp.setTranslateX(500);
 		mp.setTranslateY(height*0.85-90);
 		this.addChildren(mp);
@@ -106,6 +107,10 @@ public class ShopPane extends GamePane {
 		op.setTranslateX(500);
 		op.setTranslateY(height*0.82);
 		this.addChildren(op);
+		
+		c.setTranslateX(200);
+		c.setTranslateY(height*0.2);
+		this.addChildren(c);
 		
 	
 //		ImageView rice  = new ImageView(sushiGame.getInventories().get(InventoryItemName.RICE).getImage());

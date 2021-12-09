@@ -23,6 +23,7 @@ public class SushiOutPane extends GamePane{
 		item.setFitWidth(w*0.8);
 		this.addChildren(item);
 		item.setVisible(false);
+		item.setTranslateX(10);
 	}
 	public void showImage(RecipeName name) {
 		if(name==null) {
