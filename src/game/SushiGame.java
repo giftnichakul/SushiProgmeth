@@ -11,6 +11,7 @@ public class SushiGame {
 	
 	private static SushiGame self;
 	private int gold;
+	private int currentLevel;
 	private Map<InventoryItemName,InventoryItem> inventories = new HashMap<InventoryItemName,InventoryItem>();
 	
 	private SushiGame() {
@@ -56,7 +57,7 @@ public class SushiGame {
 	public Customer getRandomCustomer() {
 		 int id =(int) ((Math.random() * Customer.values().length));
 		 Customer c = Customer.getCustomerFromId(id);
-		 System.out.println(id);
+		 //System.out.println(id);
 		 return c;
 	}
 	public RecipeName getRandomRecipe() {
@@ -76,6 +77,12 @@ public class SushiGame {
 		addInventory(InventoryItemName.SQUID,2.0,2,true,"squid01.png");
 		addInventory(InventoryItemName.TAMAGO,2.0,2,true,"tamago01.png");
 		addInventory(InventoryItemName.TUNA,2.0,2,true,"tuna01.png");
+	}
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
 	}
 	
 	

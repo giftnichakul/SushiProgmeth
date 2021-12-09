@@ -2,15 +2,18 @@ package sushishop;
 
 import game.RecipeName;
 import game.SushiGame;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class SushiOutPane extends GamePane{
 	
 	protected SushiOutPane self;
 	private int w = 150;
 	private int h = 100;
-	ImageView item;
+	private ImageView item;
+	public static RecipeName currentSushi;
 	public SushiOutPane() {
 		self = this;
 		
@@ -24,9 +27,17 @@ public class SushiOutPane extends GamePane{
 		this.addChildren(item);
 		item.setVisible(false);
 		item.setTranslateX(10);
+//		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//			//it detects once when the mouse is released.
+//			@Override
+//			public void handle(MouseEvent event) {
+//				if()
+//			}	
+//		});
 	}
 	public void showImage(RecipeName name) {
-		if(name==null) {
+		currentSushi = name;
+		if(currentSushi==null) {
 			item.setVisible(false);
 		}
 		else {
@@ -34,4 +45,9 @@ public class SushiOutPane extends GamePane{
 			item.setVisible(true);
 		}
 	}
+	
+	public static void discard() {
+	}
+	
+	
 }

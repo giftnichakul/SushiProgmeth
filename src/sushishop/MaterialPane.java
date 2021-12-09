@@ -21,8 +21,9 @@ public class MaterialPane extends GamePane {
 			//it detects once when the mouse is released.
 			@Override
 			public void handle(MouseEvent event) {
-				
-				setSelected(!isSelected());
+				if(materialName.getQuantity()>0) {
+					setSelected(!isSelected());
+				}
 				self.println(self.toString(),""+isSelected());
 				if(isSelected()) {
 					self.setStyle("-fx-border-color: black;");

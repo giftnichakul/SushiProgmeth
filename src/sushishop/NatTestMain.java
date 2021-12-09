@@ -31,9 +31,6 @@ public class NatTestMain extends Application {
 		stage.setHeight(height);
 		*/
 		stage.show();
-		for(int i =0;i< 100;i++) {
-			SushiGame.get().getRandomCustomer();
-		}
 		
 	}
 	public static void main(String[] args) {

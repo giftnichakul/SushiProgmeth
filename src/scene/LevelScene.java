@@ -1,5 +1,6 @@
 package scene;
 
+import game.SushiGame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -74,6 +75,7 @@ public class LevelScene extends ScenePane{
 			@Override
 			public void handle(ActionEvent event) {
 				nameLevel = level;
+				SushiGame.get().setCurrentLevel(level);
 				new Thread(()->{
 					GameScene game = new GameScene(nameLevel);
 					setSceneOn(SceneController.stage, game);

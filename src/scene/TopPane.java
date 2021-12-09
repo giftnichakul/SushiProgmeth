@@ -72,6 +72,7 @@ public class TopPane {
 		AnchorPane.setLeftAnchor(time, 470.0);
 		AnchorPane.setTopAnchor(time, 8.0);
 		
+		
 		topPane.getChildren().addAll(levelBackground, presentLevel, background, currentMoney, coin, clock, moneyGoal,time);
 	}
 	

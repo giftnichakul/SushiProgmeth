@@ -29,14 +29,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import scene.TopPane;
 
 
-public class ShopPane extends GamePane {
+public class ShopPane extends GamePane implements Shopable {
 	
 	
 	protected int width;
 	protected int height;
 	protected ArrayList<CustomerPane> seats = new ArrayList<CustomerPane>();
+	public RecipeName current; 
+	public SushiOutPane op;
 	private void createBackground() {
 		ImageView fuji = new ImageView(new Image("file:res/images/background_fuji_blur.jpg"));
 		fuji.setX(0);
@@ -75,8 +78,10 @@ public class ShopPane extends GamePane {
 		drawIngredients();
 		drawCustomers();
 		//addinitRecipes();
+		TopPane tp = new TopPane(SushiGame.get().getCurrentLevel());
+		this.getChildren().add(tp.getTopPane());
 		MakeSushiPane mp = new MakeSushiPane();
-		SushiOutPane op = new SushiOutPane();
+		op = new SushiOutPane();
 		//CustomerPane c = new CustomerPane();
 		mp.setTranslateX(500);
 		mp.setTranslateY(height*0.85-90);
@@ -86,7 +91,7 @@ public class ShopPane extends GamePane {
 			for(Node node: ShopPane.this.getChildren()) {
 				if(node instanceof MaterialPane) {
 					MaterialPane m = (MaterialPane)node;
-					if(m.isSelected()) {
+					if(m.isSelected() && m.getMaterialName().getQuantity()>0) {
 						ShopPane.this.println(ShopPane.this.toString(),m.toString());
 						sel.add(m.getMaterialName());
 					}
@@ -106,9 +111,21 @@ public class ShopPane extends GamePane {
 			}
 		});
 		
+		op.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			//it detects once when the mouse is released.
+			@Override
+			public void handle(MouseEvent event) {
+				if(op.currentSushi != null) {
+					current = op.currentSushi;
+				}
+			}	
+		});
+		
+		
 		op.setTranslateX(500);
 		op.setTranslateY(height*0.82);
 		this.addChildren(op);
+		
 		
 		//c.setTranslateX(200);
 		//c.setTranslateY(height*0.23-8);
@@ -130,9 +147,10 @@ public class ShopPane extends GamePane {
 	
 	protected void drawCustomers() {
 		for(int i= 0;i< 5;i++) {
-			CustomerPane cus = new CustomerPane();
+			CustomerPane cus = new CustomerPane(this);
 			cus.setTranslateY(height*0.23-8);
 			cus.setTranslateX(i*200+20);
+			seats.add(cus);
 			this.addChildren(cus);
 		}
 	}
@@ -174,6 +192,15 @@ public class ShopPane extends GamePane {
 		Recipes.add(RecipeName.SUSHI_TUNA, new InventoryItemName[] {InventoryItemName.TUNA,InventoryItemName.RICE});
 		Recipes.add(RecipeName.SUSHI_OCTOPUS, new InventoryItemName[] {InventoryItemName.OCTOPUS,InventoryItemName.RICE});
 	}*/
+
+
+
+	@Override
+	public RecipeName itemArrived() {
+		// TODO Auto-generated method stub
+		op.showImage(null);
+		return current;
+	}
 
 	
 	
