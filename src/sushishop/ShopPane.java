@@ -13,6 +13,7 @@ import game.SushiGame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,6 +41,9 @@ public class ShopPane extends GamePane implements Shopable {
 	protected ArrayList<CustomerPane> seats = new ArrayList<CustomerPane>();
 	public RecipeName current; 
 	public SushiOutPane op;
+	public TopPane tp;
+	private ImageView bin;
+	protected Group materialGroup = new Group();
 	private void createBackground() {
 		ImageView fuji = new ImageView(new Image("file:res/images/background_fuji_blur.jpg"));
 		fuji.setX(0);
@@ -74,21 +78,23 @@ public class ShopPane extends GamePane implements Shopable {
 		
 		
 		createBackground();	
+		createTrashBin();
 		System.out.println(sushiGame.getInventories().size());
 		drawIngredients();
 		drawCustomers();
 		//addinitRecipes();
-		TopPane tp = new TopPane(SushiGame.get().getCurrentLevel());
+		tp = new TopPane(SushiGame.get().getCurrentLevel());
 		this.getChildren().add(tp.getTopPane());
-		MakeSushiPane mp = new MakeSushiPane();
+		MakeSushiPane mp = new MakeSushiPane(this);
 		op = new SushiOutPane();
 		//CustomerPane c = new CustomerPane();
 		mp.setTranslateX(500);
 		mp.setTranslateY(height*0.85-90);
 		this.addChildren(mp);
 		mp.setOnMouseClicked((e)->{
+			//mp.setStyle("-fx-border-color: black;");
 			Set<InventoryItemName> sel = new HashSet<InventoryItemName>();
-			for(Node node: ShopPane.this.getChildren()) {
+			for(Node node: materialGroup.getChildren()) {
 				if(node instanceof MaterialPane) {
 					MaterialPane m = (MaterialPane)node;
 					if(m.isSelected() && m.getMaterialName().getQuantity()>0) {
@@ -97,14 +103,21 @@ public class ShopPane extends GamePane implements Shopable {
 					}
 				}
 			}
+			clearSelection();
 			try {
 				RecipeName r =Recipes.getRecipe(sel);
-				
+//				if(mp.isEnable()) {
+//					ShopPane.this.println(ShopPane.this.toString(),r.toString());
+//					op.showImage(r);
+//				}
 				ShopPane.this.println(ShopPane.this.toString(),r.toString());
 				op.showImage(r);
+				mp.setDisable(true);
+				materialGroup.setDisable(true);
+				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				op.showImage(null);
+				op.showWrongOrder();
 				ShopPane.this.println(ShopPane.this.toString(),"No sush menu ediot!!"+e1.getMessage());
 //				e1.printStackTrace();
 //				e1.Exception("Recipe not found");
@@ -125,6 +138,9 @@ public class ShopPane extends GamePane implements Shopable {
 		op.setTranslateX(500);
 		op.setTranslateY(height*0.82);
 		this.addChildren(op);
+		this.addChildren(bin);
+		bin.setTranslateX(650);
+		bin.setTranslateY(490);
 		
 		
 		//c.setTranslateX(200);
@@ -179,10 +195,12 @@ public class ShopPane extends GamePane implements Shopable {
 			MaterialPane item  = new MaterialPane(x);
 			item.setTranslateX(0+(imgSize+10)*(i/2)+5);
 			item.setTranslateY(height*0.85-(imgSize)*(i%2));
-
-			this.addChildren(item);
+			materialGroup.getChildren().add(item);
+			//this.addChildren(item);
+		
 			i++;
 		}
+		this.addChildren(materialGroup);
 		
 	}
 	/*
@@ -201,6 +219,55 @@ public class ShopPane extends GamePane implements Shopable {
 		op.showImage(null);
 		return current;
 	}
+
+
+
+	@Override
+	public void dealItem() {
+		// TODO Auto-generated method stub
+		current =null;
+		
+	}
+	@Override
+	public void dealItem(RecipeName r) {
+		this.println(this.toString(), "dealItem add money");
+		// TODO Auto-generated method stub
+		SushiGame.get().addGold(r.price); 
+		tp.setCurrentMoney(SushiGame.get().getGold());
+		current =null;
+		
+	}
+	
+	private void createTrashBin() {
+		bin = new ImageView(SushiGame.get().getImage("trashbin01.png",80,100));
+		bin.setOnMouseClicked((e)->{
+			op.discard();
+		});
+		
+	}
+
+
+
+	@Override
+	public boolean currentAvailable() {
+		// TODO Auto-generated method stub
+		return current == null;
+	}
+	
+	public void clearSelection() {
+		for(Node node: materialGroup.getChildren()) {
+			if(node instanceof MaterialPane) {
+				MaterialPane m = (MaterialPane)node;
+				if(m.isSelected() ) {
+					m.setSelected(false);
+					
+					println(this.toString(), "clear selection");
+				}
+			}
+		}
+	}
+	
+	
 
 	
 	

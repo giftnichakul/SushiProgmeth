@@ -43,7 +43,19 @@ public class CustomerPane extends GamePane {
 			//it detects once when the mouse is released.
 			@Override
 			public void handle(MouseEvent event) {
-				foodTray.showImage(shopable.itemArrived());
+//				foodTray.showWrongOrder();
+				if(shopable.itemArrived()!= null && shopable.itemArrived().id == (menu.getRecipe().id)) {
+					foodTray.showImage(shopable.itemArrived());
+					shopable.dealItem(shopable.itemArrived());
+					menu.setServe(true);
+				}
+				else {
+					foodTray.showWrongOrder();
+					shopable.dealItem();
+					menu.setServe(false);
+				}
+				
+				
 //				ShopPane.current =null;
 //				SushiOutPane.currentSushi = null;
 			}	

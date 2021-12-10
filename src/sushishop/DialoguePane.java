@@ -103,4 +103,11 @@ public class DialoguePane extends GamePane {
 	public void setServe(boolean isServe) {
 		this.isServe = isServe;
 	}
+
+	public RecipeName getRecipe() {
+		return recipe;
+	}
+
+
+	
 }

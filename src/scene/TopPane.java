@@ -2,6 +2,7 @@ package scene;
 
 import java.time.Duration;
 
+import game.SushiGame;
 import javafx.animation.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -51,7 +52,9 @@ public class TopPane {
 		AnchorPane.setLeftAnchor(moneyGoal, 270.0);
 		AnchorPane.setTopAnchor(moneyGoal, 8.0);
 		
-		setCurrentMoney(100);
+		currentMoney = new Label("0");
+		currentMoney.setFont(font);
+		setCurrentMoney(SushiGame.get().getGold());
 		AnchorPane.setLeftAnchor(currentMoney, 270.0);
 		AnchorPane.setTopAnchor(currentMoney, 8.0);
 		
@@ -94,8 +97,9 @@ public class TopPane {
 		}else {
 			text = "" + money;
  		}
-		currentMoney = new Label(text);
-		currentMoney.setFont(font);
+		currentMoney.setText(text);
+		
+		
 	}
 	
 	public ImageView getImageView(String image, int width, int height) {

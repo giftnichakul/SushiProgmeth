@@ -38,4 +38,8 @@ public class FoodPane extends GamePane {
 			item.setVisible(true);
 		}
 	}
+	public void showWrongOrder() {
+		item.setImage(SushiGame.get().getImage("UNJI01.png"));
+		item.setVisible(true);
+	}
 }

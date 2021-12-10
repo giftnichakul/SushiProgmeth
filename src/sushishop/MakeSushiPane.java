@@ -10,14 +10,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-public class MakeSushiPane extends GamePane{
+public class MakeSushiPane extends GamePane {
 	protected MakeSushiPane self;
 	private int w = 150;
 	private int h = 40;
 	private boolean isSelected = false;
-	public MakeSushiPane() {
+	private Shopable shopable;
+	public MakeSushiPane(Shopable shopable) {
 		self = this;
-		
+		this.shopable = shopable;
 		ImageView item  = new ImageView(SushiGame.get().getImage("start-button.png"));
 		item.setFitWidth(w);
 		item.setFitHeight(h);
@@ -55,4 +56,5 @@ public class MakeSushiPane extends GamePane{
 		
 		this.addChildren(caption);
 	}
+
 }

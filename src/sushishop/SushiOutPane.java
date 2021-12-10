@@ -34,6 +34,7 @@ public class SushiOutPane extends GamePane{
 //				if()
 //			}	
 //		});
+		
 	}
 	public void showImage(RecipeName name) {
 		currentSushi = name;
@@ -45,8 +46,16 @@ public class SushiOutPane extends GamePane{
 			item.setVisible(true);
 		}
 	}
+	public void showWrongOrder() {
+		item.setImage(SushiGame.get().getImage("UNJI01.png"));
+		item.setVisible(true);
+	}
+	public void discard() {
+		item.setVisible(false);
+	}
 	
-	public static void discard() {
+	public static void discard2() {
+		
 	}
 	
 	

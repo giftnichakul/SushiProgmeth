@@ -16,7 +16,6 @@ public class MaterialPane extends GamePane {
 		ImageView item  = new ImageView(sushiGame.getInventories().get(name).getImage());
 		item.setFitWidth(imgSize);
 		item.setFitHeight(imgSize);
-		
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			//it detects once when the mouse is released.
 			@Override
@@ -25,12 +24,7 @@ public class MaterialPane extends GamePane {
 					setSelected(!isSelected());
 				}
 				self.println(self.toString(),""+isSelected());
-				if(isSelected()) {
-					self.setStyle("-fx-border-color: black;");
-				}
-				else {
-					self.setStyle("-fx-border-color: none;");
-				}
+				//showSelection();
 			}	
 		});
 		
@@ -66,6 +60,8 @@ public class MaterialPane extends GamePane {
 
 	public void setSelected(boolean isSelected) {
 		this.selected = isSelected;
+		showSelection();
+		
 	}
 
 	public InventoryItemName getMaterialName() {
@@ -75,5 +71,12 @@ public class MaterialPane extends GamePane {
 	public void setMaterialName(InventoryItemName materialName) {
 		this.materialName = materialName;
 	}
-	
+	public void showSelection() {
+		if(isSelected()) {
+			self.setStyle("-fx-border-color: black;");
+		}
+		else {
+			self.setStyle("-fx-border-color: none;");
+		}
+	}
 }

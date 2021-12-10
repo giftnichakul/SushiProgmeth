@@ -10,7 +10,7 @@ public class SushiGame {
 	
 	
 	private static SushiGame self;
-	private int gold;
+	private int gold = 100;
 	private int currentLevel;
 	private Map<InventoryItemName,InventoryItem> inventories = new HashMap<InventoryItemName,InventoryItem>();
 	
@@ -29,6 +29,9 @@ public class SushiGame {
 	}
 	public void setGold(int gold) {
 		this.gold = gold;
+	}
+	public void addGold(int gold) {
+		this.gold+=gold;
 	}
 	public Map<InventoryItemName,InventoryItem> getInventories() {
 		return inventories;
